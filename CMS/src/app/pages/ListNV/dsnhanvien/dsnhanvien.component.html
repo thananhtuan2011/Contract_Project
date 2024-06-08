@@ -1,0 +1,156 @@
+<style>
+
+  
+      .fullname{
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+      }
+     
+    </style>
+    
+    
+    <div class="card card-custom card-sticky gutter-b">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="card-label cssdanhsach" style="font-size: 20px;font-weight: bold;">***List Employee***</span>
+          <mat-form-field appearance="fill">
+            <mat-label> Deparment</mat-label>
+            <mat-select  [(ngModel)]="selected"  (ngModelChange)="onDepartmentSelection()">
+              <mat-option *ngFor="let item of listDepartment" [value]="item.department_id">
+                {{ item.departmentName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div class="card-toolbar">
+     
+            <ng-container *ngIf="user.role_deparment=='all'">
+                <button  style="margin-right: 10px;" color="primary"  (click)="Add()" mat-raised-button>Add</button>
+             
+              </ng-container>
+            <form style="padding-right: 10px;">
+            
+              <span style="    display: flex;
+              align-items: center;
+              position: absolute;
+              margin-top: 15px;
+              margin-left: 10px;">
+                  <mat-icon>search</mat-icon>
+              </span>
+              <input    (ngModelChange)="saverange($event)"  [(ngModel)]="searchtext"  type="text" name="search" placeholder="Tìm kiếm ...">
+            </form>
+          </div>
+ 
+      </div>
+      <!-- body -->
+      <div class="card-body">
+        <div class="table-responsive angular-bootstrap-table" [ngStyle]="{ height: getHeight() }">
+          <table class="table table-head-custom table-vertical-center overflow-hidden">
+            <thead>
+              <th >
+                <span>Id</span>
+               
+              </th>
+              <th>
+                <span>UserName</span>
+               
+              </th>
+              <th >
+                <span>FullName</span>
+              
+              </th>
+              <th >
+                <span>Deparment</span>
+              
+              </th>
+              <th >
+                <span>CreateDate</span>
+                
+              </th>
+              <th *ngIf="user.role_deparment=='all'||user.role_deparment=='admin'" style="text-align: center;"  >
+                <span>Password</span>
+               
+              </th>
+            
+              <th *ngIf="user.role_deparment=='all'||user.role_deparment=='admin'" style="text-align: center;"  >
+                <span>Xóa</span>
+               
+              </th>
+              <th  *ngIf="user.role_deparment=='all'||user.role_deparment=='admin'" style="text-align: center;" >
+                <span>Cập nhật</span>
+               
+              </th>
+            
+            </thead>
+            <tbody>
+             
+            <tr *ngFor="let r of _acount_services._itemsacount$ | async">
+               
+                <td>
+                  <div>
+                    <span class="cssusername">{{ r.account_id }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span class="cssDepartment">{{ r.username  }} </span>
+                  </div>
+                </td>
+                <td>
+                  <span class="cssJobtitle">{{ r.fullname }} </span>
+                </td>
+                <td>
+                  <span class="cssJobtitle">{{ r.departments.departmentName }} </span>
+                </td>
+                
+                <td>
+                  <span class="cssJobtitle">{{ r.createdAt | date : 'yyyy/M/dd - h:mm' }}</span>
+                </td>
+              
+            
+                <td   *ngIf="user.role_deparment=='all'||user.role_deparment=='admin'"  style="text-align: center">
+                 
+                  <span class="cssJobtitle">{{ r.password }}</span>
+                </td>
+ 
+                <td  style="text-align: center" *ngIf="user.role_deparment=='all'">
+                    <mat-icon (click)="Delete(r.account_id)"   mat style="cursor: pointer; color: #c51b54; font-size: 16px" aria-hidden="false">
+                        clear</mat-icon
+                    >
+                      
+                  </td>
+            
+                  <td  style="text-align: center" *ngIf="user.role_deparment=='admin'&&r.departments.department_id!=user.department_id">
+                   
+                      
+                  </td>
+                <td  style="text-align: center" *ngIf="user.role_deparment=='admin'&&r.departments.department_id==user.department_id">
+                  <mat-icon (click)="Delete(r.account_id)"   mat style="cursor: pointer; color: #c51b54; font-size: 16px" aria-hidden="false">
+                      clear</mat-icon
+                  >
+                    
+                </td>
+                
+                  <td   *ngIf="user.role_deparment=='all'||user.role_deparment=='admin'"  style="text-align: center">
+                    <mat-icon   (click)="Update(r)"  mat style="cursor: pointer; color: #3199ed; font-size: 16px" aria-hidden="false">
+                        update</mat-icon
+                    >
+                      
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- end: Table -->
+        <app-paginator
+          class="d-flex justify-content-between align-items-center flex-wrap"
+          [paginator]="paginator"
+          [isLoading]="isLoading"
+          (paginate)="paginate($event)"
+        ></app-paginator>
+      </div>
+    </div>
+    
+    

@@ -1,0 +1,137 @@
+
+
+
+<mat-tab-group>
+  <mat-tab label=" Update Deparment"> 
+    <div style="display: flex;flex-direction: column;">
+      <mat-form-field appearance="outline">
+          <mat-label>Name Deparment </mat-label>
+          <input required  style="    padding: 10px;" [(ngModel)]="tenphongban" matInput placeholder="Nhập tên phòng ban">
+        </mat-form-field>
+        
+        <div style="float: right;">
+        
+          <button  (click)="submit()" class="btn btn-primary" type="submit" style="margin-right: 10px;">Save</button>
+          <button (click)="goBack()" type="button" class="btn btn-light">Back</button>
+      </div>
+   
+  </div>
+  </mat-tab>
+  <mat-tab label="Role"> 
+    
+    <style>
+
+  
+      .fullname{
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+      }
+     
+    </style>
+    
+    
+    <div class="card card-custom card-sticky gutter-b">
+      <div class="card-header">
+        <div class="card-title">
+
+        </div>
+        <div class="card-toolbar">
+         
+          </div>
+ 
+      </div>
+      <!-- body -->
+      <div class="card-body">
+        <div class="table-responsive angular-bootstrap-table" [ngStyle]="{ height: getHeight() }">
+          <table class="table table-head-custom table-vertical-center overflow-hidden">
+            <thead>
+              <th >
+                <span>Id</span>
+               
+              </th>
+              <th>
+                <span>UserName</span>
+               
+              </th>
+              <th >
+                <span>FullName</span>
+              
+              </th>
+              <th >
+                <span>Deparment</span>
+              
+              </th>
+              <th >
+                <span>CreateDate</span>
+                
+              </th>
+             
+            
+              <th  style="text-align: center;"  >
+                <span>Role</span>
+               
+              </th>
+              <th style="text-align: center;" >
+                <span>Cập nhật</span>
+               
+              </th>
+            
+            </thead>
+            <tbody>
+             
+            <tr *ngFor="let r of _acount_services._itemsacount$ | async">
+               
+                <td>
+                  <div>
+                    <span class="cssusername">{{ r.account_id }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <span class="cssDepartment">{{ r.username  }} </span>
+                  </div>
+                </td>
+                <td>
+                  <span class="cssJobtitle">{{ r.fullname }} </span>
+                </td>
+                <td>
+                  <span class="cssJobtitle">{{ r.departments.departmentName }} </span>
+                </td>
+                
+                <td>
+                  <span class="cssJobtitle">{{ r.createdAt |date:'dd/M/yyyy-hh:mm'}}</span>
+                </td>
+                   
+                <td>
+                  <span class="cssJobtitle">{{ r.role_deparment }}</span>
+                </td>
+              
+                
+             
+     
+                <td  style="text-align: center">
+                  <mat-icon   (click)="Update(r)"  mat style="cursor: pointer; color: #3199ed; font-size: 16px" aria-hidden="false">
+                      update</mat-icon
+                  >
+                    
+                </td>
+           
+      
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- end: Table -->
+        <app-paginator
+          class="d-flex justify-content-between align-items-center flex-wrap"
+          [paginator]="paginator"
+          [isLoading]="isLoading"
+          (paginate)="paginate($event)"
+        ></app-paginator>
+      </div>
+    </div>
+    
+    
+  </mat-tab>
+</mat-tab-group>

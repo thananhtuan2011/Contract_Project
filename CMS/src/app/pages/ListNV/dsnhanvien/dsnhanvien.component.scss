@@ -1,0 +1,85 @@
+// mobile
+
+@media only screen and (max-width:739px) {
+
+    input[type=text] {
+        width: 170px;
+        box-sizing: border-box;
+        border: 1px solid #3e44f9b5;
+        border-radius: 15px;
+        font-size: 12px;
+        background-color: white;
+        /* background-image: url('./assets/search_icon.png'); */
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 7px 12px 7px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+}
+
+// ipad
+
+@media only screen and (min-width:739px) and (max-width:1023px) {
+    input[type=text] {
+        width: 250px;
+        box-sizing: border-box;
+        border: 1px solid #3e44f9b5;
+        border-radius: 15px;
+        font-size: 12px;
+        background-color: white;
+        /* background-image: url('./assets/search_icon.png'); */
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 7px 12px 7px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 280px;
+        outline: none;
+        border: 1px solid #3e44f9b5;
+        background-color: white;
+    }
+
+}
+
+
+// pc
+@media only screen and (min-width:1024px) {
+
+    input[type=text] {
+        width: 280px;
+        box-sizing: border-box;
+        border: 1px solid #3e44f9b5;
+        border-radius: 15px;
+        font-size: 12px;
+        background-color: white;
+        /* background-image: url('./assets/search_icon.png'); */
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 7px 12px 7px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 380px;
+        outline: none;
+        border: 1px solid #3e44f9b5;
+        background-color: white;
+    }
+
+}
+
+::ng-deep {
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+        background: none !important;
+    }
+
+    .mat-form-field-infix {
+        padding: 0px !important;
+    }
+}

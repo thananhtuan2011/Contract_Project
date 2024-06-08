@@ -1,0 +1,25 @@
+<div>
+    <div style="text-align: center;">
+        <h3>Update Roles For Deparment</h3>
+        </div>
+        <hr>
+
+
+            <br>
+			<span *ngIf="empty">
+				<h4> ***No Roles***</h4>
+			</span>
+<div style="    padding-left: 55px;" >
+
+
+	<mat-radio-group class="example-radio-group" [(ngModel)]="radioSelected">
+		<mat-radio-button style="outline: none;" *ngFor="let option of listGroup" [value]="option.GroupName" class="example-radio-button" color="primary">
+			{{option.GroupName}}
+		</mat-radio-button>
+	</mat-radio-group>
+</div>
+  <div style="float: right;">
+    <button  (click)="submit()" class="btn btn-primary" type="submit" style="margin-right: 10px;">Lưu</button>
+    <button (click)="goBack()" type="button" class="btn btn-light">Quay lại</button>
+</div>
+</div>

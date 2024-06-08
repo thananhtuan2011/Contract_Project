@@ -1,0 +1,151 @@
+<!--begin::Signup-->
+<div class="login-form login-signup">
+    <!--begin::Form-->
+    <div class="pb-13 pt-lg-0 pt-5">
+        <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
+          Update  Debt Invoice
+        </h3>
+       
+      </div>
+    <div class="form-group row">
+ 
+    <div class="col-lg-6">
+      <label class="font-size-h6 font-weight-bolder text-dark">Customer</label>
+      <br>
+      <mat-form-field >
+        <mat-label>Customer</mat-label>
+        <mat-select style="padding: 20px;
+        height: 10px !important;
+        background: #F3F6F9;;
+       "  [(ngModel)]="selected_customer" >
+          <mat-option *ngFor="let item of listAllCustomer" [value]="item.customer_id">
+            {{ item.customerName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     </div>
+     <div class="col-lg-6">
+      <label class="font-size-h6 font-weight-bolder text-dark">Contract</label>
+      <br>
+      <mat-form-field >
+        <mat-label>Contract</mat-label>
+        <mat-select style="padding: 20px;
+        height: 10px !important;
+        background: #F3F6F9;;
+       "  [(ngModel)]="selected_contact" >
+          <mat-option *ngFor="let item of listAllContact" [value]="item.contract_id">
+            {{ item.contract_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label>Debt  Day</label>
+            <div class="input-group input-group-solid">
+              <input [(ngModel)]="date"  type="text" name="dob" class="form-control form-control-lg form-control-solid" autocomplete="off"
+                placeholder="dd/mm/yyyy" ngbDatepicker #d="ngbDatepicker" 
+               readonly="true" />
+              <div class="input-group-append" (click)="d.toggle()">
+                <span class="input-group-text">
+                  <i class="text-dark-50 flaticon-calendar"></i>
+                </span>
+              </div>
+            </div>
+           
+          </div>
+     
+  
+      </div>
+      <div (click)="hiddenfileinput_image.click()" class="form-group row" style="    margin-left: 2px;
+      border-radius: 10px;
+      width: 100px;
+      border: 1px solid;
+      padding-left: 10px;
+      align-items: center;">
+        <span>Upload</span>
+        <button  
+      matTooltip="Hỉnh ảnh" mat-icon-button aria-label="Example icon button with a home icon">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+    
+    <input type='file' accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .heic, .heif, .tiff|image/*"
+    id="PDFInpdd" #hiddenfileinput_image (change)="onSelectFile_PDF($event)" multiple
+    style="display: none;">
+  
+  
+      </div>
+      <div *ngFor="let img of list_image">
+        <img style="width: 200px;" [src]="img">
+    </div>
+    <form
+      class="form"
+      novalidate="novalidate"
+      id="kt_login_signup_form"
+      [formGroup]="registrationForm"
+      (ngSubmit)="submit()"
+    >
+      <!--begin::Title-->
+     
+      
+      <hr>
+      <!--end::Title-->
+  
+      <!-- begin::Alert error-->
+
+      <!-- end::Alert error-->
+  
+      <!--begin::Form group-->
+   
+ 
+      <div class="form-group">
+        <label class="font-size-h6 font-weight-bolder text-dark">Amount</label>
+        <input
+          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+          type="number"
+          name="amount"
+          formControlName="amount"
+          placeholder="Amount"
+          autocomplete="off"
+          [ngClass]="{
+            'is-invalid': registrationForm.controls['amount'].invalid
+          }"
+        />
+       
+      </div>
+      
+    
+      <!--begin::Form group-->
+      <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
+        <button
+          type="submit"
+          id="kt_login_signup_submit"
+          [disabled]="
+          registrationForm.invalid
+        "
+          class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4"
+        >
+          Submit
+        </button>
+        <a
+            (click)="goBack()"
+          type="button"
+          id="kt_login_signup_cancel"
+          class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3"
+        >
+          Cancel
+        </a>
+  
+        <ng-container *ngIf="isLoading$ | async">
+          <span class="spinner spinner-primary ml-5"></span>
+        </ng-container>
+      </div>
+      <!--end::Form group-->
+    </form>
+
+    <!--end::Form-->
+  </div>
+  <!--end::Signup-->
+
+  

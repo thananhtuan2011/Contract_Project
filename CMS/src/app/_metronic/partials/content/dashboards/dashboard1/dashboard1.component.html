@@ -1,0 +1,156 @@
+<div style="display: flex; justify-content: space-around;">
+ 
+
+  <div  style="
+    display: flex;flex-direction: column;
+  ">
+
+    <mat-form-field style="width: 200px;" appearance="fill">
+      <mat-label> Year</mat-label>
+      <mat-select  [(ngModel)]="selected_re"  (ngModelChange)="onDepartmentSelectionRe()">
+        <mat-option *ngFor="let item of listYear" [value]="item.value">
+          {{ item.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div  style="background-color: white;margin-bottom: 15px;padding: 0px;margin-right: 30px;">
+
+  <ngx-charts-bar-vertical
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="_thuchi_serices.Bieudo | async"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+</div>
+
+</div>
+<div  style="
+display: flex;flex-direction: column;
+">
+  <mat-form-field style="width: 200px;" appearance="fill">
+    <mat-label> Year</mat-label>
+    <mat-select  [(ngModel)]="selected_ex"  (ngModelChange)="onDepartmentSelection()">
+      <mat-option *ngFor="let item of listYear" [value]="item.value">
+        {{ item.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+<div style="background-color: white;margin-bottom: 15px;padding: 0px;">
+  <ngx-charts-bar-vertical
+  [view]="view"
+  [scheme]="colorScheme_Chi"
+  [results]="single2_chi"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel_chi"
+  (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+</div>
+</div>
+
+<!-- load biểu đồ thực tế -->
+
+</div>
+<hr>
+<div style="display: flex; justify-content: space-around;">
+ 
+ 
+<div  style="
+display: flex;flex-direction: column;
+">
+
+<mat-form-field style="width: 200px;" appearance="fill">
+  <mat-label> Year</mat-label>
+  <mat-select  [(ngModel)]="selected_re1"  (ngModelChange)="onDepartmentSelectionRe__thu_real()">
+    <mat-option *ngFor="let item of listYear" [value]="item.value">
+      {{ item.value }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div  style="background-color: white;margin-bottom: 15px;padding: 0px;margin-right: 30px;">
+
+<ngx-charts-bar-vertical
+[view]="view"
+[scheme]="colorScheme_real"
+[results]="single2_real"
+[gradient]="gradient"
+[xAxis]="showXAxis"
+[yAxis]="showYAxis"
+[legend]="showLegend"
+[showXAxisLabel]="showXAxisLabel"
+[showYAxisLabel]="showYAxisLabel"
+[xAxisLabel]="xAxisLabel_real"
+(select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+</div>
+
+</div>
+<div  style="
+display: flex;flex-direction: column;
+">
+<mat-form-field style="width: 200px;" appearance="fill">
+<mat-label> Year</mat-label>
+<mat-select  [(ngModel)]="selected_re2"  (ngModelChange)="onDepartmentSelection__chireal()">
+  <mat-option *ngFor="let item of listYear" [value]="item.value">
+    {{ item.value }}
+  </mat-option>
+</mat-select>
+</mat-form-field>
+<div style="background-color: white;margin-bottom: 15px;padding: 0px;">
+<ngx-charts-bar-vertical
+[view]="view"
+[scheme]="colorScheme_Chi_real"
+[results]="single2_chi_real"
+[gradient]="gradient"
+[xAxis]="showXAxis"
+[yAxis]="showYAxis"
+[legend]="showLegend"
+[showXAxisLabel]="showXAxisLabel"
+[showYAxisLabel]="showYAxisLabel"
+[xAxisLabel]="xAxisLabel_chi_real"
+(select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+</div>
+</div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <app-mixed-widget4></app-mixed-widget4>
+  </div>
+ 
+</div>
+<!-- <div class="row" style="    margin: 20px 0px 20px 0px !important;
+background: white;">
+  <div class="col-lg-12">
+    <app-calender-full></app-calender-full>
+  </div>
+ 
+</div> -->
+
+
+<div class="row" style="margin-top: 20px;">
+  <div class="col-lg-12">
+    <app-mixed-widget1></app-mixed-widget1>
+  </div>
+ 
+</div>
+<!-- <div class="row" style="    margin: 20px 0px 20px 0px !important;
+background: white;">
+  <div class="col-lg-12">
+    <app-calender-full-reality></app-calender-full-reality>
+  </div>
+ 
+</div> -->
+
+

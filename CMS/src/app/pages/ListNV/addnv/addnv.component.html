@@ -1,0 +1,44 @@
+<div style="display: flex;flex-direction: column;">
+    <h2>Add Employee </h2>
+    <hr>
+    <mat-form-field appearance="outline">
+        <mat-label style="font-weight: bold;">Tên nhân viên</mat-label>
+        <input required style="    padding: 10px;" [(ngModel)]="tennv" matInput placeholder="Nhập tên nhân viên">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-top: 20px;">
+        <mat-label style="font-weight: bold;">UserName</mat-label>
+        <input required style="    padding: 10px;"  [(ngModel)]="username" matInput placeholder="Nhập username">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-top: 20px;">
+        <mat-label style="font-weight: bold;">Password</mat-label>
+        <input required style="    padding: 10px;"  [(ngModel)]="pass" matInput placeholder="Nhập pass mặc định (CCCD)">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-top: 20px;">
+        <mat-label style="font-weight: bold;">Email</mat-label>
+        <input  required style="    padding: 10px;"  [(ngModel)]="email" matInput placeholder="Nhập email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-top: 20px;">
+        <mat-label style="font-weight: bold;">Phone</mat-label>
+        <input required type="number" style="    padding: 10px;"  [(ngModel)]="phone" matInput placeholder="Nhập sđt">
+      </mat-form-field>
+      <div style="display: fle;align-items: center;" >
+        <div>
+
+      
+        <mat-form-field appearance="fill">
+          <mat-label style="font-weight: bold;">Department</mat-label>
+          <mat-select  [(ngModel)]="selected" (ngModelChange)="onGiaSelection()">
+            <mat-option *ngFor="let item of listPB" [value]="item.department_id">
+              {{ item.departmentName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+        <div style="display: flex;width: 100%; justify-content: end;">
+          <button  (click)="submit()" class="btn btn-primary" type="submit" style="margin-right: 10px;">Lưu</button>
+          <button (click)="goBack()" type="button" class="btn btn-light">Quay lại</button>
+        </div>
+        
+    </div>
+ 
+</div>

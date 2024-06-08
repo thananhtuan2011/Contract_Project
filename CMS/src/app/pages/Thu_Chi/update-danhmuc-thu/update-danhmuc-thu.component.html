@@ -1,0 +1,21 @@
+<div style="text-align: center;">
+    <h1>Update </h1>
+</div>
+
+<form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Id Code</label>
+      <input [(ngModel)]="idcode" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Id Code">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Name Code</label>
+      <input  [(ngModel)]="name"type="text" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleInputPassword1" placeholder="Name Code">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Note</label>
+        <input [(ngModel)]="note" type="text" [ngModelOptions]="{standalone: true}" class="form-control" id="exampleInputPassword1" placeholder="Note">
+      </div>
+    <button (click)="Save()" style="margin-right: 15px;" type="submit" class="btn btn-primary">Submit</button>
+    
+    <button (click)="goback()"  type="submit" class="btn btn-light">Cancel</button>
+  </form>

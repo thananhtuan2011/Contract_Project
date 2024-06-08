@@ -1,0 +1,279 @@
+<!--begin::Signup-->
+<div class="login-form login-signup">
+    <!--begin::Form-->
+    <div class="pb-13 pt-lg-0 pt-5">
+      <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
+        Update Customer
+      </h3>
+      <p class="text-muted font-weight-bold font-size-h4">
+        Enter your details to create your customer
+      </p>
+    </div>
+    <div>
+      <label class="font-size-h6 font-weight-bolder text-dark">Type</label>
+      <br>
+      <mat-form-field >
+        <mat-label>Type</mat-label>
+        <mat-select style="padding: 20px;
+        height: 10px !important;
+        background: #F3F6F9;;
+       "  [(ngModel)]="selectedtype" >
+          <mat-option *ngFor="let item of listType_customer" [value]="item.idtype_customers">
+            {{ item.type_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     </div>
+  
+     <div>
+      <label class="font-size-h6 font-weight-bolder text-dark">Level</label>
+      <br>
+      <mat-form-field >
+        <mat-label>Level</mat-label>
+        <mat-select style="padding: 20px;
+        height: 10px !important;
+        background: #F3F6F9;;
+       "  [(ngModel)]="selectedlevel" >
+          <mat-option *ngFor="let item of listLevel" [value]="item.id_level">
+            {{ item.name_level }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     </div>
+    <form
+      class="form"
+      novalidate="novalidate"
+      id="kt_login_signup_form"
+      [formGroup]="registrationForm"
+      (ngSubmit)="submit()"
+    >
+      <!--begin::Title-->
+   
+      <!--end::Title-->
+  
+      <!-- begin::Alert error-->
+      <ng-container *ngIf="hasError">
+        <div
+          class="mb-10 alert alert-custom alert-light-danger alert-dismissible"
+        >
+          <div class="alert-text">The registration details are incorrect</div>
+        </div>
+      </ng-container>
+      <!-- end::Alert error-->
+  
+      <!--begin::Form group-->
+   
+      <div class="form-group">
+        <label class="font-size-h6 font-weight-bolder text-dark">customerName</label>
+        <input
+          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+          type="text"
+          name="customerName"
+          formControlName="customerName"
+          placeholder="customerName"
+          autocomplete="off"
+          [ngClass]="{
+            'is-invalid': registrationForm.controls['customerName'].invalid
+          }"
+        />
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'customerName is required',
+            control: registrationForm.controls['customerName']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'minlength',
+            message: 'customerName should have at least 3 symbols',
+            control: registrationForm.controls['customerName']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'maxLength',
+            message: 'customerName should have maximum 100 symbols',
+            control: registrationForm.controls['customerName']
+          }"
+        ></ng-container>
+      </div>
+      <div class="form-group">
+        <label class="font-size-h6 font-weight-bolder text-dark">Phone</label>
+        <input
+          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+          type="tel" pattern="[0-9]*"
+          name="phone"
+           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          type = "number"
+          maxlength = "11"
+          formControlName="phone"
+          placeholder="Phone"
+          autocomplete="off"
+          [ngClass]="{
+            'is-invalid': registrationForm.controls['phone'].invalid
+          }"
+        />
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'phone is required',
+            control: registrationForm.controls['phone']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'minlength',
+            message: 'phone should have at least 10 symbols',
+            control: registrationForm.controls['phone']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'maxLength',
+            message: 'phone should have maximum 11 symbols',
+            control: registrationForm.controls['phone']
+          }"
+        ></ng-container>
+      </div>
+      <div class="form-group">
+        <label class="font-size-h6 font-weight-bolder text-dark">Address</label>
+        <input
+          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+          type="text"
+          name="address"
+          formControlName="address"
+          placeholder="Address"
+          autocomplete="off"
+          [ngClass]="{
+            'is-invalid': registrationForm.controls['address'].invalid
+          }"
+        />
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'address is required',
+            control: registrationForm.controls['address']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'minlength',
+            message: 'address should have at least 3 symbols',
+            control: registrationForm.controls['address']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'maxLength',
+            message: 'address should have maximum 100 symbols',
+            control: registrationForm.controls['address']
+          }"
+        ></ng-container>
+      </div>
+      <!--end::Form group-->
+  
+      <!--begin::Form group-->
+      <div class="form-group">
+        <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
+        <input
+          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+          type="email"
+          placeholder="Email"
+          name="email"
+          formControlName="email"
+          autocomplete="off"
+          [ngClass]="{ 'is-invalid': registrationForm.controls['email'].invalid }"
+        />
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Email is required',
+            control: registrationForm.controls['email']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'email',
+            message: 'Email is invalid',
+            control: registrationForm.controls['email']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'minlength',
+            message: 'Email should have at least 3 symbols',
+            control: registrationForm.controls['email']
+          }"
+        ></ng-container>
+        <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'maxLength',
+            message: 'Email should have maximum 360 symbols',
+            control: registrationForm.controls['email']
+          }"
+        ></ng-container>
+      </div>
+
+      <!--begin::Form group-->
+      <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
+      
+        <button
+          type="submit"
+          id="kt_login_signup_submit"
+          [disabled]="
+          registrationForm.invalid
+        "
+          class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4"
+        >
+          Submit
+        </button>
+        <a
+            (click)="goBack()"
+          type="button"
+          id="kt_login_signup_cancel"
+          class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3"
+        >
+          Cancel
+        </a>
+  
+        <ng-container *ngIf="isLoading$ | async">
+          <span class="spinner spinner-primary ml-5"></span>
+        </ng-container>
+      </div>
+      <!--end::Form group-->
+    </form>
+    <!--end::Form-->
+  </div>
+  <!--end::Signup-->
+  
+  <ng-template
+    #formError
+    let-control="control"
+    let-message="message"
+    let-validation="validation"
+  >
+    <ng-container
+      *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+    >
+      <div class="fv-plugins-message-container">
+        <div class="fv-help-block">
+          {{ message }}
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+  

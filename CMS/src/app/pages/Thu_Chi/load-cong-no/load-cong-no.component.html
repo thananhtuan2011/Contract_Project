@@ -1,0 +1,356 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Debt">
+
+        <div class="card card-custom gutter-b">
+            <div class="card-header">
+              <div class="card-title">
+                <h3 class="card-label"> Debt   list</h3>
+              </div>
+              <div class="card-toolbar">
+                <button type="button" class="btn btn-primary" (click)="create()">New  Debt  </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- begin: Filtration form -->
+            
+              <!-- end: Filtration form -->
+          
+              <!-- begin: Grouping -->
+              <ng-container *ngIf="grouping.getSelectedRowsCount()">
+                <div class="form">
+                  <div class="row align-items-center form-group-actions margin-top-20 margin-bottom-20">
+                    <div class="col-xl-12">
+                      <div class="form-group form-group-inline">
+                        <div class="form-label form-label-no-wrap">
+                          <label class="font-bold font-danger"><span>Selected records count:
+                              <b>{{ grouping.getSelectedRowsCount() }}</b></span></label>
+                        </div>
+                        <div>
+                          <button type="button" class="btn btn-danger font-weight-bolder font-size-sm mr-1"
+                            (click)="deleteSelected()">
+                            <i class="fa fa-trash"></i> Delete All
+                          </button>&nbsp;
+                          <!-- <button type="button" class="btn btn-light-primary font-weight-bolder font-size-sm mr-1"
+                            (click)="fetchSelected()">
+                            <i class="fa fa-stream"></i> Fetch Selected
+                          </button>&nbsp; -->
+                          <!-- <button type="button" class="btn btn-light-primary font-weight-bolder font-size-sm mr-1"
+                            (click)="updateStatusForSelected()">
+                            <i class="fa fa-sync-alt"></i> Update Status
+                          </button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <!-- end: Grouping -->
+          
+              <!-- begin:Table -->
+              <div class="table-responsive angular-bootstrap-table">
+                <table class="table table-head-custom table-vertical-center overflow-hidden">
+                  <thead>
+                    <th class="selection-cell-header" data-row-selection="true">
+                      <label class="checkbox checkbox-single"><input type="checkbox" (click)="grouping.selectAllRows()"
+                          [checked]="grouping.checkAreAllRowsSelected()" /><span></span></label>
+                    </th>
+                    <th>
+                      ID
+                   
+                    </th>
+                 
+                    <th>
+                      Total Amount
+                     
+                   
+                  
+                    <th>
+                     Start Date
+                    
+                    </th>
+                    <th>
+                     End Date
+                     
+                     </th>
+                     <th>
+                     Month
+                      
+                      </th>
+                      <th>
+                        Pay Month
+                         
+                         </th>
+                         <th>
+                          Debt Pay
+                           
+                           </th>
+                           <th>
+                            Outstanding debt
+                             
+                             </th>
+                         
+                    <th>
+                      Type
+                    
+                    </th>
+                    <th>
+                     
+                      Created By
+                    </th>
+                  
+                    <th>CreatedAt </th>
+                    <th>
+                     
+                      Note
+                      </th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                   
+                    <tr *ngFor="let r of _Thu_chiService._itemsDebtt$ | async">
+                        <td class="selection-cell">
+                            <label class="checkbox checkbox-single"><input type="checkbox" (click)="grouping.selectRow(r.idPlan)"
+                                [checked]="grouping.isRowSelected(r.idPlan)" />
+                              <span></span>
+                            </label>
+                          </td>
+                        <td>
+                          
+                            <span class="cssusername">{{ r.iddebts }}</span>
+                        </td>
+                      
+                        <td>
+                          <div>
+                            <span class="cssDepartment">{{ r.amount |number }} vnđ </span>
+                          </div>
+                        </td>
+                        <!-- <td *ngIf="r.status">
+                          <span [ngStyle]="{ color: getColor(r.status) }" class="cssJobtitle">{{ r.status.status_name }} </span>
+                        </td> -->
+                     
+                        <td>
+                            <span class="cssJobtitle">{{ r.start_date | date : 'dd/MM/yyyy'  }}</span>
+                          </td>
+                          <td>
+                            <span class="cssJobtitle">{{ r.end_date | date : 'dd/MM/yyyy'  }}</span>
+                          </td>
+                      
+                               
+                        <td>
+                          <span class="cssJobtitle">{{ r.month }}</span>
+                        </td>
+                          <td>
+                            <span class="cssJobtitle">{{ r.pay_month |number}}</span>
+                          </td>
+                          <td>
+                            <span class="cssJobtitle">{{ r.Debt_pay |number}}</span>
+                          </td>
+                        <td>
+                           
+                          <span class="cssJobtitle">{{ r.Debt_amount |number }}</span>
+                        </td>
+                        <td>
+                           
+                          <span class="cssJobtitle">{{ r.type  }}</span>
+                        </td>
+                        <td>
+                           
+                          <span class="cssJobtitle">{{ r.accounts.fullname  }}</span>
+                        </td>
+                        
+                        <td>
+                          <span class="cssJobtitle">{{ r.createdAt | date : 'dd/MM/yyyy - h:mm'   }}</span>
+                        </td>
+                        <td>
+                          <span class="cssJobtitle">{{ r.Note  }}</span>
+                        </td>
+        
+                        <td>
+                 
+        
+                    <a title="Delete customer" class="btn btn-icon btn-light btn-hover-danger btn-sm"
+                      (click)="delete(r.iddebts)">
+                      <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" cacheSVG="true"
+                        class="svg-icon svg-icon-md svg-icon-danger">
+                      </span>
+                    </a>
+                          </td>
+                     
+                    
+                      </tr>
+                    </tbody>
+                  
+               
+                </table>
+              </div>
+              <!-- end: Table -->
+              <app-paginator class="d-flex justify-content-between align-items-center flex-wrap" [paginator]="paginator"
+                [isLoading]="isLoading" (paginate)="paginatedebt($event)"></app-paginator>
+            </div>
+          </div>
+        
+    </mat-tab>
+    <mat-tab label="Debt invoice">
+
+        <div class="card card-custom gutter-b">
+            <div class="card-header">
+              <div class="card-title">
+                <h3 class="card-label"> Debt invoice list</h3>
+              </div>
+              <div class="card-toolbar">
+                <button type="button" class="btn btn-primary" (click)="Add()">New  Debt Invoice  </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- begin: Filtration form -->
+             
+              <!-- end: Filtration form -->
+          
+              <!-- begin: Grouping -->
+              <ng-container *ngIf="grouping.getSelectedRowsCount()">
+                <div class="form">
+                  <div class="row align-items-center form-group-actions margin-top-20 margin-bottom-20">
+                    <div class="col-xl-12">
+                      <div class="form-group form-group-inline">
+                        <div class="form-label form-label-no-wrap">
+                          <label class="font-bold font-danger"><span>Selected records count:
+                              <b>{{ grouping.getSelectedRowsCount() }}</b></span></label>
+                        </div>
+                        <div>
+                          <button type="button" class="btn btn-danger font-weight-bolder font-size-sm mr-1"
+                            (click)="deleteSelected()">
+                            <i class="fa fa-trash"></i> Delete All
+                          </button>&nbsp;
+                          <!-- <button type="button" class="btn btn-light-primary font-weight-bolder font-size-sm mr-1"
+                            (click)="fetchSelected()">
+                            <i class="fa fa-stream"></i> Fetch Selected
+                          </button>&nbsp; -->
+                          <!-- <button type="button" class="btn btn-light-primary font-weight-bolder font-size-sm mr-1"
+                            (click)="updateStatusForSelected()">
+                            <i class="fa fa-sync-alt"></i> Update Status
+                          </button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <!-- end: Grouping -->
+          
+              <!-- begin:Table -->
+              <div class="table-responsive angular-bootstrap-table">
+                <table class="table table-head-custom table-vertical-center overflow-hidden">
+                  <thead>
+                    <th class="selection-cell-header" data-row-selection="true">
+                      <label class="checkbox checkbox-single"><input type="checkbox" (click)="grouping.selectAllRows()"
+                          [checked]="grouping.checkAreAllRowsSelected()" /><span></span></label>
+                    </th>
+                    <th>
+                      ID
+                   
+                    </th>
+                 
+                    <th>
+                      Total Amount
+                     
+                   
+                  
+                    <th>
+                      Date Bebt
+                    
+                    </th>
+                    <th>
+                      Img
+                    
+                    </th>
+                    <th>
+                      Customer
+                    
+                    </th>
+                    <th>
+                     
+                      Created By
+                    </th>
+                    <th>CreatedAt </th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                   
+                    <tr *ngFor="let r of _Thu_chiService._itemsBebt$ | async">
+                        <td class="selection-cell">
+                            <label class="checkbox checkbox-single"><input type="checkbox" (click)="grouping.selectRow(r.idPlan)"
+                                [checked]="grouping.isRowSelected(r.idPlan)" />
+                              <span></span>
+                            </label>
+                          </td>
+                        <td>
+                          
+                            <span class="cssusername">{{ r.idDebt_bills }}</span>
+                        </td>
+                      
+                        <td>
+                          <div>
+                            <span class="cssDepartment">{{ r.amount |number }} vnđ </span>
+                          </div>
+                        </td>
+                        <!-- <td *ngIf="r.status">
+                          <span [ngStyle]="{ color: getColor(r.status) }" class="cssJobtitle">{{ r.status.status_name }} </span>
+                        </td> -->
+                     
+                        <td>
+                            <span class="cssJobtitle">{{ r.date_debt | date : 'dd/MM/yyyy'  }}</span>
+                          </td>
+                          
+                        <td>
+                            <img style="width: 100px;" [src]="r.Img">
+                          </td>
+                          <td *ngIf="!r.customers">
+                          </td>   
+                        <td *ngIf="r.customers">
+                          <span class="cssJobtitle">{{ r.customers.customerName }}</span>
+                        </td>
+
+                        <td *ngIf="!r.contracts">
+                        </td>   
+                      <td *ngIf="r.contracts">
+                        <span class="cssJobtitle">{{ r.contracts.contract_name }}</span>
+                      </td>
+                        
+                      
+                     
+                        <td>
+                          <span class="cssJobtitle">{{ r.createdAt | date : 'dd/MM/yyyy - h:mm'  }}</span>
+                        </td>
+        
+        
+                        <td>
+                            
+                      <a title="Edit customer" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+                      (click)="UpdateDebtInvoice(r)">
+                      <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" cacheSVG="true"
+                        class="svg-icon svg-icon-md svg-icon-primary">
+                      </span>
+                    </a>
+        
+                    <a title="Delete customer" class="btn btn-icon btn-light btn-hover-danger btn-sm"
+                      (click)="Delete_bebt(r.idDebt_bills)">
+                      <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" cacheSVG="true"
+                        class="svg-icon svg-icon-md svg-icon-danger">
+                      </span>
+                    </a>
+                          </td>
+                     
+                    
+                      </tr>
+                    </tbody>
+                  
+               
+                </table>
+              </div>
+              <!-- end: Table -->
+              <app-paginator class="d-flex justify-content-between align-items-center flex-wrap" [paginator]="paginator"
+                [isLoading]="isLoading" (paginate)="paginate($event)"></app-paginator>
+            </div>
+          </div>
+    </mat-tab>
+  </mat-tab-group>

@@ -1,0 +1,164 @@
+<style>
+
+  
+    .fullname{
+      display: flex;
+      align-items: center;
+      padding-left: 5px;
+    }
+   
+  </style>
+  
+  
+  <div class="card card-custom card-sticky gutter-b">
+    <div class="card-header">
+      <div class="card-title">
+        <span class="card-label cssdanhsach" style="font-size: 20px;font-weight: bold;">***List Supplier***</span>
+        <!-- <mat-form-field appearance="fill">
+          <mat-label> Deparment</mat-label>
+          <mat-select  [(ngModel)]="selected"  (ngModelChange)="onDepartmentSelection()">
+            <mat-option *ngFor="let item of listDepartment" [value]="item.department_id">
+              {{ item.departmentName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+      </div>
+      <div class="card-toolbar">
+   
+          <ng-container>
+              <button  style="margin-right: 10px;margin-bottom: 5px; " color="warn"  (click)="Add()" mat-raised-button>Add Supplier</button>
+           
+            </ng-container>
+          <form style="padding-right: 10px;">
+          
+            <span style="    display: flex;
+            align-items: center;
+            position: absolute;
+            margin-top: 15px;
+            margin-left: 10px;">
+                <mat-icon>search</mat-icon>
+            </span>
+            <input    (ngModelChange)="saverange($event)"  [(ngModel)]="searchtext"  type="text" name="search" placeholder="Tìm kiếm ...">
+          </form>
+        </div>
+
+    </div>
+    <!-- body -->
+    <div class="card-body">
+      <div class="table-responsive angular-bootstrap-table" [ngStyle]="{ height: getHeight() }">
+        <table class="table table-head-custom table-vertical-center overflow-hidden">
+          <thead>
+            <th >
+              <span>Supplier Id</span>
+             
+            </th>
+            <th>
+              <span>CustomerName</span>
+             
+            </th>
+            <th >
+              <span>Email</span>
+            
+            </th>
+            <th >
+              <span>Phone</span>
+            
+            </th>
+            <th >
+              <span>Address</span>
+              
+            </th>
+           
+        
+              <th >
+                <span>level</span>
+                
+              </th>
+             
+              <th >
+                <span>createdDate</span>
+                
+              </th>
+          
+            <th style="text-align: center;"  >
+              <span>Action</span>
+             
+            </th>
+           
+          </thead>
+          <tbody>
+           
+          <tr *ngFor="let r of _sup_services._itemsSup$ | async">
+             
+              <td>
+                <div>
+                  <span class="cssusername">{{ r.idsuppliers     }}</span>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <span class="cssDepartment">{{ r.supplieName  }} </span>
+                </div>
+              </td>
+              <td>
+                <span class="cssJobtitle">{{ r.email }} </span>
+              </td>
+              <td>
+                <span class="cssJobtitle">{{ r.phone }} </span>
+              </td>
+              
+              <td>
+                <span class="cssJobtitle">{{ r.address }} </span>
+              </td>
+           
+              <td  *ngIf="!r.levels">
+                <span class="cssJobtitle"> </span>
+              </td>
+        
+              <td  *ngIf="r.levels">
+                <span class="cssJobtitle">{{ r.levels.name_level }} </span>
+              </td>
+              <td>
+                <span class="cssJobtitle">{{ r.createdAt | date : 'yyyy/M/dd - h:mm'  }}</span>
+              </td>
+
+              <td  style="text-align: center">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>settings</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button (click)="Delete(r.idsuppliers )" mat-menu-item>
+                      <mat-icon>clear</mat-icon>
+                      <span>Remove</span>
+                    </button>
+                    <button  (click)="Update(r )" mat-menu-item >
+                      <mat-icon>schedule</mat-icon>
+                      <span>Update</span>
+                    </button>
+                   
+                  </mat-menu>
+                </td>
+          
+              
+                <!-- <td  style="text-align: center">
+                  <mat-icon   (click)="Update(r)"  mat style="cursor: pointer; color: #3199ed; font-size: 16px" aria-hidden="false">
+                      update</mat-icon
+                  >
+                    
+                </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end: Table -->
+      <app-paginator
+        class="d-flex justify-content-between align-items-center flex-wrap"
+        [paginator]="paginator"
+        [isLoading]="isLoading"
+        (paginate)="paginate($event)"
+      ></app-paginator>
+    </div>
+  </div>
+  
+  

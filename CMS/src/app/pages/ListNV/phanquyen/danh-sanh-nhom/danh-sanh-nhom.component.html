@@ -1,0 +1,110 @@
+<style>
+
+      .fullname{
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+      }
+     
+    </style>
+    
+    
+    <div class="card card-custom card-sticky ">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="card-label cssdanhsach" style="font-size: 20px;font-weight: bold;">Authorize</span>
+          <ng-container >
+            <button  style="margin-right: 10px;" color="accent"  (click)="Add()" mat-raised-button>New</button>
+         
+          </ng-container>
+
+        </div>
+ 
+      </div>
+      <!-- body -->
+      <div class="card-body" style="padding: 0px !important;">
+        <div class="table-responsive angular-bootstrap-table" [ngStyle]="{ height: getHeight() }">
+          <table class="table table-head-custom table-vertical-center overflow-hidden">
+            <thead>
+              <th style="text-align: center;" >
+                <span>RolesGroup</span>
+               
+              </th>
+              <th style="text-align: center;">
+                <span>RolesGroupName</span>
+               
+              </th>
+              <th style="text-align: center;" >
+                <span>See Roles</span>
+                
+              </th>
+            
+              <th style="text-align: center;" >
+                <span>Operation</span>
+                
+              </th>
+              <th style="text-align: center;" >
+                <span>Action</span>
+                
+              </th>
+            
+            
+            
+            </thead>
+            <tbody>
+             
+            <tr *ngFor="let r of _phanquyen_services._itemsnhomuser$ | async">
+               
+                <td>
+                  <div  style="text-align: center;">
+                    <span >{{ r.permiss_group }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div style="text-align: center;">
+                    <span >{{ r.GroupName  }} </span>
+                  </div>
+                </td>
+                <td  style="text-align: center">
+                  <mat-icon (click)="See(r)" mat style="cursor: pointer; color: rgb(27, 132, 197); font-size: 16px" aria-hidden="false">
+                    remove_red_eye</mat-icon
+                  >
+                </td>
+                <td  style="text-align: center">
+                    <mat-icon (click)="loadUser(r)" mat style="cursor: pointer; color: #c51b54; font-size: 16px" aria-hidden="false">
+                        people</mat-icon
+                    >
+                  </td>
+                <td  style="text-align: center">
+                  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>settings</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button (click)="Delete(r.permiss_group)" mat-menu-item>
+                      <mat-icon>clear</mat-icon>
+                      <span>Remove</span>
+                    </button>
+                    <button (click)="UpdateRoles(r.permiss_group)" mat-menu-item >
+                      <mat-icon>update</mat-icon>
+                      <span>Update</span>
+                    </button>
+                   
+                  </mat-menu>
+                  </td>
+               
+                 
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- end: Table -->
+        <app-paginator
+          class="d-flex justify-content-between align-items-center flex-wrap"
+          [paginator]="paginator"
+          [isLoading]="isLoading"
+          (paginate)="paginate($event)"
+        ></app-paginator>
+      </div>
+    </div>
+    
+    

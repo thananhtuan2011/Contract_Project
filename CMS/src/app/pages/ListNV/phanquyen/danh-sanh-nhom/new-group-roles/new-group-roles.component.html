@@ -1,0 +1,41 @@
+<div>
+    <div>
+        <h4>*Create Group Roles*</h4>
+    </div>
+    <hr>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span style=" display: flex;
+          align-items: center;
+          margin-right: 10px;" id="inputGroup-sizing-default">Name Group</span>
+        </div>
+        <input  [(ngModel)]="nameGroup"  type="text"
+        style=" border-radius: 10px;"
+         class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      </div>
+      <hr>
+      <!--  load các quyền -->
+      <div>
+      </div>
+      <div *ngFor="let item of listAll" style="padding-left: 20px;font-size: 16px;">
+       
+          <div style="display: flex;align-items: center;">
+            <input id="checkBox" 
+            style="width: 20px;height: 20px; "
+          
+            type="checkbox"
+            (click)="updateItem($event, item)"
+            value="item.id"> 
+            <span style="padding-left: 10px;">
+              {{ item.roleName }}
+            </span>
+           
+          
+          </div>
+      </div>
+      <div style="display: flex;width: 100%; justify-content: end;">
+        <button  (click)="Add()" class="btn btn-primary" type="submit" style="margin-right: 10px;">Lưu</button>
+        <button  (click)="goBack()" type="button" class="btn btn-light">Quay lại</button>
+      </div>
+
+</div>

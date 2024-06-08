@@ -1,0 +1,41 @@
+<div style="display: flex;flex-direction: column;">
+    <h2>Update Acount </h2>
+    <mat-form-field appearance="outline" style="margin-top: 20px;">
+        <mat-label>UserName</mat-label>
+        <input disabled style="    padding: 10px;"  [(ngModel)]="username" matInput placeholder="Nhập username">
+      </mat-form-field>
+    <mat-form-field appearance="outline">
+      
+        <mat-label>FullName </mat-label>
+        <input style="    padding: 10px;" [(ngModel)]="tennv" matInput placeholder="Nhập tên nhân viên">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="margin-top: 20px;">
+        <mat-label>Email</mat-label>
+        <input style="    padding: 10px;"  [(ngModel)]="email" matInput placeholder="Nhập email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="margin-top: 20px;">
+        <mat-label>Phone</mat-label>
+        <input type="number" style="    padding: 10px;"  [(ngModel)]="phone" matInput placeholder="Nhập sđt">
+      </mat-form-field>
+      <div style="display: fle;align-items: center;" >
+        <div>
+
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Department</mat-label>
+          <mat-select  [(ngModel)]="selected" (ngModelChange)="onGiaSelection()">
+            <mat-option *ngFor="let item of listPB" [value]="item.department_id">
+              {{ item.departmentName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+        <div style="display: flex;width: 100%; justify-content: end;">
+          <button  (click)="submit()" class="btn btn-primary" type="submit" style="margin-right: 10px;">Lưu</button>
+          <button (click)="goBack()" type="button" class="btn btn-light">Quay lại</button>
+        </div>
+        
+    </div>
+ 
+</div>

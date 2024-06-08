@@ -1,0 +1,41 @@
+<div>
+    <div>
+        <h4>* Group Roles*</h4>
+    </div>
+    <hr>
+
+      <hr>
+      <div>
+      </div>
+      <div style="text-align: center; width: 100%;" *ngIf="listCheck.length==0">
+        <div   class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+      </div>
+    
+      <div *ngFor="let item of listCheck" style="padding-left: 20px;font-size: 16px;">
+       
+          <div style="display: flex;align-items: center;">
+            <input id="checkBox" 
+            style="width: 20px;height: 20px;outline: none; "
+            type="checkbox"
+            [(ngModel)]="item.check"
+            (click)="updateItem($event, item)"
+            value="item.role_id"> 
+            <span style="padding-left: 10px;">
+              
+                    {{ item.roleName }}
+               
+             
+            </span>
+           
+          
+          </div>
+      </div>
+      <hr>
+      <div style="display: flex;width: 100%; justify-content: end;">
+        <button  (click)="Add()" class="btn btn-primary" type="submit" style="margin-right: 10px;">Lưu</button>
+        <button   (click)="goBack()"  type="button" class="btn btn-light">Quay lại</button>
+      </div>
+
+</div>

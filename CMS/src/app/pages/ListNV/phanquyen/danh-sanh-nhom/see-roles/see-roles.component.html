@@ -1,0 +1,35 @@
+<div>
+    <div>
+        <h4>* Group Roles*</h4>
+    </div>
+    <hr>
+
+      <hr>
+      <div>
+      </div>
+      <div *ngFor="let item of listAll" style="padding-left: 20px;font-size: 16px;">
+       
+          <div style="display: flex;align-items: center;">
+            <input id="checkBox" 
+            style="width: 20px;height: 20px;outline: none; "
+            checked="true"
+            disabled    
+            type="checkbox"
+            (click)="updateItem($event, item)"
+            value="item.role_id"> 
+            <span style="padding-left: 10px;">
+              
+                    {{ item.roleName }}
+               
+             
+            </span>
+           
+          
+          </div>
+      </div>
+      <hr>
+      <div style="display: flex;width: 100%; justify-content: end;">
+        <button   (click)="goBack()" type="button" class="btn btn-light">Quay lại</button>
+      </div>
+
+</div>

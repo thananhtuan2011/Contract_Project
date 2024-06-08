@@ -1,0 +1,122 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-title h4" id="example-modal-sizes-title-lg">
+      <ng-container *ngIf="customer">
+        <ng-container *ngIf="customer.id">Edit</ng-container>
+        <ng-container *ngIf="!customer.id">Create</ng-container>
+        Revenue Reality
+        <ng-container *ngIf="customer.id">'{{customer.firstName}} {{ customer.lastName }}'</ng-container>
+      </ng-container>
+    </div>
+  </div>
+  <div class="overlay overlay-block cursor-default modal-body" style="min-height: 304px;">
+    <ng-container *ngIf="isLoading$ | async">
+      <div class="overlay-layer bg-transparent">
+        <div class="spinner spinner-lg spinner-success"></div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="customer">
+      <form action="#" class="form form-label-right" [formGroup]="formGroup">
+        <div class="form-group row">
+      
+          <div class="col-lg-6">
+            <label class="form-label">Total Amount</label>
+            <input
+         
+            mask="separator.2" thousandSeparator="," separatorLimit="99999999999999" [allowNegativeNumbers]="false"
+           [(ngModel)]="total_amount"class="form-control form-control-lg form-control-solid" name="total"
+              placeholder="Total" autocomplete="off" [class.is-invalid]="isControlInvalid('total')"
+              [class.is-valid]="isControlValid('total')" formControlName="total" />
+            <div class="valid-feedback" *ngIf="isControlValid('total')">total was entered correct</div>
+            <div class="invalid-feedback" *ngIf="controlHasError('required', 'total')">total is required</div>
+            <div class="invalid-feedback" *ngIf="controlHasError('minlength', 'total')">total should have at
+              least 3 symbols</div>
+            <div class="invalid-feedback" *ngIf="controlHasError('maxLength', 'total')">total should have
+              maximum 100 symbols</div>
+          </div>
+        
+        </div>
+    
+        <div class="form-group row">
+         
+          <div class="col-lg-6">
+            <label>Date Revenue </label>
+            <div class="input-group input-group-solid">
+              <input type="text" name="dob" class="form-control form-control-lg form-control-solid" autocomplete="off"
+                placeholder="dd/mm/yyyy" ngbDatepicker #d="ngbDatepicker" [class.is-invalid]="isControlInvalid('dob')"
+                [class.is-valid]="isControlValid('dob')" formControlName="dob" readonly="true" />
+              <div class="input-group-append" (click)="d.toggle()">
+                <span class="input-group-text">
+                  <i class="text-dark-50 flaticon-calendar"></i>
+                </span>
+              </div>
+            </div>
+            <div class="valid-feedback" *ngIf="isControlValid('dob')">Date of Birth was entered correct</div>
+            <div class="invalid-feedback" *ngIf="controlHasError('required', 'dob')">Please enter <b>Date of Birth</b>
+              in 'mm/dd/yyyy' format</div>
+          </div>
+          <div class="col-lg-6">
+            <label>Payment methods</label>
+            <select   [(ngModel)]="selectedpay" class="form-control form-control-lg form-control-solid" name="gender"
+              [class.is-invalid]="isControlInvalid('gender')" formControlName="gender">
+              <option value="Tiền mặt">Tiền mặt</option>
+              <option value="Chuyển khoản">Chuyển khoản</option>
+            </select>
+            <div class="feedback">Please select <b>{{selectedpay}}</b></div>
+          </div>
+        </div>
+    
+      
+      </form>
+      <div class="form-group row">
+  
+        <div class="col-lg-6">
+          <label>Revenue   Code</label>
+          <select   [(ngModel)]="selectedcode" class="form-control form-control-lg form-control-solid" 
+         >
+            <option *ngFor="let item  of listAllThu"  [value]="item.id_code">{{item.id_code}}</option>
+          </select>
+        </div>
+    
+        <div class="col-lg-6">
+          <label>Customer Name</label>
+          <select  [(ngModel)]="selected_customer" class="form-control form-control-lg form-control-solid" 
+         >
+            <option *ngFor="let item  of listCustomer"  [value]="item.customer_id">{{item.customerName}}</option>
+          </select>
+        </div>
+    </div>
+    
+    <div (click)="hiddenfileinput_image.click()" class="form-group row" style="    margin-left: 2px;
+    border-radius: 10px;
+    width: 100px;
+    border: 1px solid;
+    padding-left: 10px;
+    align-items: center;">
+      <span>Upload</span>
+      <button  
+    matTooltip="Hỉnh ảnh" mat-icon-button aria-label="Example icon button with a home icon">
+    <mat-icon>cloud_upload</mat-icon>
+  </button>
+  
+  <input type='file' accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .heic, .heif, .tiff|image/*"
+  id="PDFInpdd" #hiddenfileinput_image (change)="onSelectFile_PDF($event)" multiple
+  style="display: none;">
+
+
+    </div>
+    <div *ngFor="let img of list_image">
+      <img style="width: 200px;" [src]="img">
+  </div>
+    </ng-container>
+  </div>
+  <div class="modal-footer" style="    justify-content: space-between !important;">
+    <button type="button" class="btn btn-light btn-elevate mr-2" (click)="modal.dismiss()">Cancel</button>
+    <ng-container *ngIf="customer">
+
+      <button type="submit" class="btn btn-primary btn-elevate" (click)="save()"
+        [disabled]="formGroup.invalid">Save</button>
+    </ng-container>
+  </div>
+</div>

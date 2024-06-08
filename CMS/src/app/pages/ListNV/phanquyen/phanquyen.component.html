@@ -1,0 +1,39 @@
+<style>
+    :host>>>.card {
+        border-radius: 0 !important;
+    }
+
+    :host>>>.mat-tab-body-content {
+        padding-top: 0px !important;
+    }
+
+
+
+    :host>>>.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+        background-color: #0a9562;
+    }
+
+    :host>>>.mat-tab-label-active {
+        color: #0a9562;
+        font-weight: bold;
+    }
+
+    :host>>>.mat-tab-group.mat-primary .mat-ink-bar,
+    .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+        height: 2px;
+        background-color: #0a9562;
+    }
+</style>
+<div class="card card-custom">
+    <div class="card-body">
+        <mat-tab-group>
+            <mat-tab label="Nhóm người dùng">
+            <app-danh-sanh-nhom></app-danh-sanh-nhom>
+            </mat-tab>
+            <mat-tab label="Người dùng">
+                <app-danh-sach-nguoi-dung></app-danh-sach-nguoi-dung>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div>

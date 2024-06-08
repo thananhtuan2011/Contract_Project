@@ -1,0 +1,54 @@
+<div *ngIf="objectChi.length>0">
+<div *ngFor="let itemchi of objectChi ">
+
+
+<mat-card class="example-card">
+    <div *ngIf="itemchi.accounts" style="display: flex;align-items: center;">
+        <img *ngIf="itemchi.accounts.avatar" style="width: 30px;border-radius: 50%;"[src]="itemchi.accounts.avatar
+        " >
+        <div>
+            CreateBy: {{itemchi.accounts.fullname}}
+        </div>
+    </div>
+ 
+    <mat-card-header>
+       
+      <mat-card-title>{{itemchi.idexpenses}}</mat-card-title>
+      <mat-card-subtitle>{{itemchi.pay|number}} VNĐ</mat-card-subtitle>
+    </mat-card-header>
+  
+    <mat-card-content>
+    Timeline {{itemchi.pay_date |date:'dd/MM/yyyy' }}
+    </mat-card-content>
+   
+  </mat-card>
+</div>
+</div>
+
+<div style="margin-top: 20px;" *ngIf="objectThu.length>0">
+    <div *ngFor="let itemthu of objectThu ">
+    
+    
+    <mat-card class="example-card">
+        <div *ngIf="itemthu.accounts" style="display: flex;align-items: center;">
+            <img *ngIf="itemthu.accounts.avatar" style="width: 30px;border-radius: 50%;"[src]="itemthu.accounts.avatar
+            " >
+            <div>
+                CreateBy: {{itemthu.accounts.fullname}}
+            </div>
+        </div>
+     
+        <mat-card-header>
+           
+          <mat-card-title>{{itemthu.id_code}}</mat-card-title>
+          <mat-card-subtitle>{{itemthu.pay|number}} VNĐ</mat-card-subtitle>
+        </mat-card-header>
+      
+        <mat-card-content>
+        Timeline {{itemthu.pay_date |date:'dd/MM/yyyy' }}
+        </mat-card-content>
+       
+      </mat-card>
+    </div>
+    </div>
+

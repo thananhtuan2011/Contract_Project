@@ -1,0 +1,206 @@
+<div class="card card-custom gutter-b">
+    <div class="card-header">
+      <div class="card-title">
+        <div class="card-toolbar" style="padding-right: 20px;">
+          <button type="button" class="btn btn-primary" (click)="create()">New Revenue </button>
+        </div>
+        <!-- <h3 style="cursor: pointer;" (click)="reload()" class="card-label">Revenue  list</h3> -->
+        <div class="input-group input-group-solid" style="width: 250px;">
+    
+          <input   (ngModelChange)="saverange($event)" [(ngModel)]="search_date" type="text" name="dob" class="form-control form-control-lg form-control-solid" autocomplete="off"
+            placeholder="Chọn ngày" ngbDatepicker #d="ngbDatepicker" 
+         readonly="true" />
+          <div style="display: flex;" class="input-group-append" (click)="d.toggle()">
+            <span class="input-group-text">
+              <i class="text-dark-50 flaticon-calendar"></i>
+            </span>
+          </div>
+        
+        </div>
+        <button (click)="reload()" *ngIf="search_date" mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <div class="card-toolbar">
+          <form style="padding-right: 10px; padding-left: 15px;">
+              
+            <span style="    display: flex;
+            align-items: center;
+            position: absolute;
+            margin-top: 15px;
+            margin-left: 10px;">
+                <mat-icon>search</mat-icon>
+            </span>
+            <input    (ngModelChange)="saverange_text($event)"  [(ngModel)]="searchtext"  type="text" name="search" placeholder="Tìm kiếm ...">
+          </form>
+        </div>
+      </div>
+     
+    </div>
+    <div class="card-body">
+      <!-- begin: Filtration form -->
+   
+      <!-- end: Filtration form -->
+  
+      <!-- begin: Grouping -->
+      <ng-container *ngIf="grouping.getSelectedRowsCount()">
+        <div class="form">
+          <div class="row align-items-center form-group-actions margin-top-20 margin-bottom-20">
+            <div class="col-xl-12">
+              <div class="form-group form-group-inline">
+                <div class="form-label form-label-no-wrap">
+                  <label class="font-bold font-danger"><span>Selected records count:
+                      <b>{{ grouping.getSelectedRowsCount() }}</b></span></label>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-danger font-weight-bolder font-size-sm mr-1"
+                    (click)="deleteSelected()">
+                    <i class="fa fa-trash"></i> Delete All
+                  </button>&nbsp;
+                  <!-- <button type="button" class="btn btn-light-primary font-weight-bolder font-size-sm mr-1"
+                    (click)="fetchSelected()">
+                    <i class="fa fa-stream"></i> Fetch Selected
+                  </button>&nbsp; -->
+                  <!-- <button type="button" class="btn btn-light-primary font-weight-bolder font-size-sm mr-1"
+                    (click)="updateStatusForSelected()">
+                    <i class="fa fa-sync-alt"></i> Update Status
+                  </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- end: Grouping -->
+  
+      <!-- begin:Table -->
+      <div class="table-responsive angular-bootstrap-table">
+        <table class="table table-head-custom table-vertical-center overflow-hidden">
+          <thead>
+            <th class="selection-cell-header" data-row-selection="true">
+            
+            </th>
+            <th>
+              ID
+           
+            </th>
+          
+            <th>
+              Total Amount
+             
+           
+          
+            <th>
+              Date Bill
+            
+            </th>
+            <th>
+            CustomerName
+            
+            </th>
+            <th>
+              Img
+            
+            </th>
+            <th>    Payment methods</th>
+            <th>     Code Revenue </th>
+
+          
+            <th>
+             
+              Created By
+            </th>
+            <!-- <th>  Status </th> -->
+           
+            <th>CreatedAt </th>
+            <th>UpdateBy</th>
+            <th>UpdateDate</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+           
+            <tr *ngFor="let r of _Thu_chiService._itemsBill$ | async">
+                <td class="selection-cell">
+                    <label class="checkbox checkbox-single"><input type="checkbox" (click)="grouping.selectRow(r.id_bill)"
+                        [checked]="grouping.isRowSelected(r.id_bill)" />
+                      <span></span>
+                    </label>
+                  </td>
+                <td>
+                  
+                    <span class="cssusername">{{ r.id_bill }}</span>
+                </td>
+              
+                <td>
+                  <div>
+                    <span class="cssDepartment">{{ r.Total_amount |number }} VNĐ  </span>
+                  </div>
+                </td>
+                <!-- <td *ngIf="r.status">
+                  <span [ngStyle]="{ color: getColor(r.status) }" class="cssJobtitle">{{ r.status.status_name }} </span>
+                </td> -->
+             
+                <td>
+                    <span class="cssJobtitle">{{ r.Date_bill | date : 'dd/MM/yyyy'  }}</span>
+                  </td>
+                  <td>
+                    <span *ngIf="r.customers" class="cssJobtitle">{{ r.customers.customerName  }}</span>
+                  </td>
+                <td>
+                    <img style="width: 100px;" [src]="r.Img">
+                  </td>
+                
+                
+                <td>
+                   
+                  <span class="cssJobtitle">{{ r.type }}</span>
+                </td>
+
+                <td>
+                   
+                  <span class="cssJobtitle">{{ r.id_code }}</span>
+                </td>
+                <td>
+                  <span class="cssJobtitle">{{ r.accounts.fullname }}</span>
+                </td>
+                <td>
+                  <span class="cssJobtitle">{{ r.createdAt | date : 'dd/MM/yyyy - h:mm'   }}</span>
+                </td>
+                <td>
+                  <span *ngIf="!r.accounts_up_bill" class="cssJobtitle"></span>
+                  <span *ngIf="r.accounts_up_bill" class="cssJobtitle">{{r.accounts_up_bill.fullname}}</span>
+                </td>
+                <td>
+                  <span class="cssJobtitle">{{ r.updatedAt | date : 'dd/MM/yyyy - h:mm'  }}</span>
+                </td>
+
+                <td style="    display: flex;
+                flex-direction: column;
+                align-items: center;">
+                    
+              <a style="margin-bottom: 10px;" title="Edit customer" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+              (click)="editthu(r.id_bill)">
+              <span [inlineSVG]="'./assets/media/svg/icons/Communication/Write.svg'" cacheSVG="true"
+                class="svg-icon svg-icon-md svg-icon-primary">
+              </span>
+            </a>
+
+            <a title="Delete customer" class="btn btn-icon btn-light btn-hover-danger btn-sm"
+              (click)="delete(r.id_bill)">
+              <span [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'" cacheSVG="true"
+                class="svg-icon svg-icon-md svg-icon-danger">
+              </span>
+            </a>
+                  </td>
+             
+            
+              </tr>
+            </tbody>
+          
+       
+        </table>
+      </div>
+      <!-- end: Table -->
+      <app-paginator class="d-flex justify-content-between align-items-center flex-wrap" [paginator]="paginator"
+        [isLoading]="isLoading" (paginate)="paginate($event)"></app-paginator>
+    </div>
+  </div>
